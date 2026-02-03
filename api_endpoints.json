@@ -1,0 +1,5 @@
+{
+  "DB Connection": "http://localhost:8000/test/db",
+  "Dependencies": "http://localhost:8000/test/apis",
+  "Metrics": "http://localhost:8000/test/metrics"
+}

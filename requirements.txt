@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+httpx
+asyncpg
+python-json-logger
+pytest
+pytest-asyncio
+pytest-cov
+azure-identity
+azure-keyvault-secrets
+azure-mgmt-monitor
+python-dotenv
+streamlit
+
+

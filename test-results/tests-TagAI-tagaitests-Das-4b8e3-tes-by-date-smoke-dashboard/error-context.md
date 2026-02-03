@@ -1,0 +1,116 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - button [ref=e4] [cursor=pointer]:
+    - img [ref=e5]
+  - navigation [ref=e9]:
+    - generic "Dashboard" [ref=e10] [cursor=pointer]:
+      - img [ref=e12]
+      - generic [ref=e15]: Dashboard
+    - generic "Recruit" [ref=e16] [cursor=pointer]:
+      - img [ref=e18]
+      - generic [ref=e21]: Recruit
+    - generic "RRF Tracking" [ref=e22] [cursor=pointer]:
+      - img [ref=e24]
+      - generic [ref=e27]: RRF Tracking
+    - generic "Resume Analysis" [ref=e28] [cursor=pointer]:
+      - img [ref=e30]
+      - generic [ref=e33]: Resume Analysis
+    - generic "RRF Upload" [ref=e34] [cursor=pointer]:
+      - img [ref=e36]
+      - generic [ref=e39]: RRF Upload
+    - generic "Logout" [ref=e40] [cursor=pointer]:
+      - img [ref=e42]
+      - generic [ref=e45]: Logout
+  - generic [ref=e47]:
+    - generic [ref=e48]:
+      - heading "Filter Candidates by Date" [level=2] [ref=e49]
+      - combobox [ref=e50] [cursor=pointer]:
+        - option "Last 24 Hours" [selected]
+        - option "Last 1 Week"
+        - option "Last 15 Days"
+        - option "Custom Range"
+      - button "Apply" [ref=e51] [cursor=pointer]
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - heading "EC Overview" [level=3] [ref=e56]
+          - heading "Applicants per EC" [level=3] [ref=e60]
+        - heading "Leadership Dashboard" [level=3] [ref=e65]
+        - generic [ref=e67]:
+          - heading "TAG Overview" [level=3] [ref=e68]
+          - textbox "Search by TAG Name" [ref=e70]
+          - table [ref=e71]:
+            - rowgroup [ref=e72]:
+              - row "TAG Name Prescreening Technical L1 Technical L2 EC Fitment Project Fitment Client Interview Shortlisted" [ref=e73]:
+                - cell "TAG Name" [ref=e74]
+                - cell "Prescreening" [ref=e75]
+                - cell "Technical L1" [ref=e76]
+                - cell "Technical L2" [ref=e77]
+                - cell "EC Fitment" [ref=e78]
+                - cell "Project Fitment" [ref=e79]
+                - cell "Client Interview" [ref=e80]
+                - cell "Shortlisted" [ref=e81]
+            - rowgroup [ref=e82]:
+              - row "nagavardhana.anasuri@valuemomentum.com 1 0 0 0 0 0 0" [ref=e83]:
+                - cell "nagavardhana.anasuri@valuemomentum.com" [ref=e84]
+                - cell "1" [ref=e85]
+                - cell "0" [ref=e86]
+                - cell "0" [ref=e87]
+                - cell "0" [ref=e88]
+                - cell "0" [ref=e89]
+                - cell "0" [ref=e90]
+                - cell "0" [ref=e91]
+              - row "Mohansai.Ande@valuemomentum.com 0 0 0 0 0 1 0" [ref=e92]:
+                - cell "Mohansai.Ande@valuemomentum.com" [ref=e93]
+                - cell "0" [ref=e94]
+                - cell "0" [ref=e95]
+                - cell "0" [ref=e96]
+                - cell "0" [ref=e97]
+                - cell "0" [ref=e98]
+                - cell "1" [ref=e99]
+                - cell "0" [ref=e100]
+        - generic [ref=e101]:
+          - heading "POS-ID Overview" [level=3] [ref=e102]
+          - textbox "Search by POS-ID" [ref=e104]
+          - table [ref=e105]:
+            - rowgroup [ref=e106]:
+              - row "POS-ID Count" [ref=e107]:
+                - cell "POS-ID" [ref=e108]
+                - cell "Count" [ref=e109]
+            - rowgroup [ref=e110]:
+              - row "Loading..." [ref=e111]:
+                - cell "Loading..." [ref=e112]
+        - heading "By Role" [level=4] [ref=e113]
+      - generic [ref=e114]:
+        - generic [ref=e115] [cursor=pointer]:
+          - generic [ref=e116]: Total RRF Count
+          - generic [ref=e119]:
+            - paragraph [ref=e120]: "0"
+            - generic [ref=e121]: Total RRFs
+          - generic [ref=e122]:
+            - generic [ref=e125]: 0App
+            - generic [ref=e128]: 0Cloud
+            - generic [ref=e131]: 0Data
+        - generic [ref=e132] [cursor=pointer]:
+          - generic [ref=e133]: L1 iMocha Results
+          - generic [ref=e136]:
+            - paragraph [ref=e137]: "0"
+            - generic [ref=e138]: Total Applicants
+          - generic [ref=e139]:
+            - generic [ref=e142]: 0App
+            - generic [ref=e145]: 0Cloud
+            - generic [ref=e148]: 0Data
+        - generic [ref=e149] [cursor=pointer]:
+          - generic [ref=e150]: Overall Status
+          - generic [ref=e153]:
+            - paragraph [ref=e154]: "0"
+            - generic [ref=e155]: Total
+          - generic [ref=e156]:
+            - generic [ref=e159]: 0Apps
+            - generic [ref=e162]: 0Short
+            - generic [ref=e165]: 0Reject
+            - generic [ref=e168]: 0Invite
+            - generic [ref=e171]: 0Done
+```
