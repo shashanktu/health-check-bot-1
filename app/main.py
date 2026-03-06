@@ -42,7 +42,7 @@ import subprocess
 @app.on_event("startup")
 def start_streamlit():
     subprocess.Popen(
-        ["streamlit", "run", "health.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+        ["streamlit", "run", "health.py", "--server.port", "8501", "--server.address", "0.0.0.0"])
 # Global exception handler
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
