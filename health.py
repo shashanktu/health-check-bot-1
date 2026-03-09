@@ -1276,10 +1276,17 @@ def run_health_check(user_input, environment, application):
     try:
         if application.lower() == "infinity":
 
+            # process = subprocess.Popen(
+            #     ["powershell", "-ExecutionPolicy", "Bypass", "-File", "infinity_metrics.ps1"],
+            #     stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1, universal_newlines=True
+            # )
             process = subprocess.Popen(
-                ["powershell", "-ExecutionPolicy", "Bypass", "-File", "infinity_metrics.ps1"],
-                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1, universal_newlines=True
-            )
+    ["python", "infinity_metrics.py"],
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT,
+    text=True,
+    bufsize=1
+)
             
             output_lines = []
             while True:
@@ -1297,7 +1304,8 @@ def run_health_check(user_input, environment, application):
             process.wait()
         else:
             process = subprocess.Popen(
-                ["powershell", "-ExecutionPolicy", "Bypass", "-File", "upd_metrics.ps1"],
+                ["python", "upd_metrics.py"],
+                # ["powershell", "-ExecutionPolicy", "Bypass", "-File", "upd_metrics.ps1"],
                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1, universal_newlines=True
             )
             
