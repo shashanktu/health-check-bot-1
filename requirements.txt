@@ -18,5 +18,6 @@ requests
 pandas
 plotly
 google-generativeai
+psutil
 
 
