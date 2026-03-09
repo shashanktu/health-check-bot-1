@@ -14,4 +14,9 @@ azure-mgmt-monitor
 python-dotenv
 streamlit
 
+requests
+pandas
+plotly
+google-generativeai
+
 
