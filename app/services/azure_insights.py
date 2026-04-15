@@ -156,8 +156,8 @@ class AzureInsightsClient:
 
 def get_insights():
     # Configuration
-    workspace_id = "f3a1f701-305b-45a7-abba-39325ee0797b"
-    api_key = "ckqmnknnogni43iik2zje27ykt2s0qqhbpncx78x"
+    workspace_id = "57387f2d-1b02-41b8-91b1-fb4860108242"
+    api_key = "y73pd0p187arc5zh3azp58nwm1phokcb6tgm6klu"
     
     print("================= AZURE AUTHENTICATION =================")
     print("Using Application Insights API Key for Authorization.")
