@@ -1153,29 +1153,32 @@ def display_health_check_results(health_data):
         st.code(health_data['powershell_output'], language="powershell")
     
     # Display Azure Insights
-    if 'azure_data' in health_data:
+    if 'azure_data' in health_data and health_data['azure_data']:
         st.subheader("Operation Summary")
         operations_df = pd.DataFrame(health_data['azure_data'])
         
-        business_functions = ['Report Incident', 'Policy Search', 'New Claim', 'Submit Claim', 
-                            'Claims Dashboard', 'Payments', 'Policy Verification', 'Insured Details', 
-                            'Incident Details', 'Claims Summary']
-        
-        chart_data = operations_df[['Operation Name', 'Successful Requests', 'Failed Requests']].head(10).copy()
-        chart_data['Business Function'] = business_functions[:len(chart_data)]
-        chart_data = chart_data.melt(id_vars=['Business Function'], 
-                                   value_vars=['Successful Requests', 'Failed Requests'],
-                                   var_name='Request Type', value_name='Count')
-        
-        fig = px.bar(chart_data, x='Business Function', y='Count', color='Request Type',
-                   title='Successful vs Failed Requests by Page',
-                   color_discrete_map={'Successful Requests': '#2E8B57', 'Failed Requests': '#DC143C'},
-                   text='Count')
-        fig.update_traces(textposition='inside', textangle=0)
-        fig.update_xaxes(tickangle=45)
-        # CHANGED: Use timestamp to ensure unique key for each chart
-        chart_key = f"display_chart_{health_data['application']}_{health_data['environment']}_{health_data.get('timestamp', int(time.time()))}"
-        st.plotly_chart(fig, use_container_width=True, key=chart_key)
+        required_cols = ['Operation Name', 'Successful Requests', 'Failed Requests']
+        if not operations_df.empty and all(col in operations_df.columns for col in required_cols):
+            business_functions = ['Report Incident', 'Policy Search', 'New Claim', 'Submit Claim', 
+                                'Claims Dashboard', 'Payments', 'Policy Verification', 'Insured Details', 
+                                'Incident Details', 'Claims Summary']
+            
+            chart_data = operations_df[required_cols].head(10).copy()
+            chart_data['Business Function'] = business_functions[:len(chart_data)]
+            chart_data = chart_data.melt(id_vars=['Business Function'], 
+                                       value_vars=['Successful Requests', 'Failed Requests'],
+                                       var_name='Request Type', value_name='Count')
+            
+            fig = px.bar(chart_data, x='Business Function', y='Count', color='Request Type',
+                       title='Successful vs Failed Requests by Page',
+                       color_discrete_map={'Successful Requests': '#2E8B57', 'Failed Requests': '#DC143C'},
+                       text='Count')
+            fig.update_traces(textposition='inside', textangle=0)
+            fig.update_xaxes(tickangle=45)
+            chart_key = f"display_chart_{health_data['application']}_{health_data['environment']}_{health_data.get('timestamp', int(time.time()))}"
+            st.plotly_chart(fig, use_container_width=True, key=chart_key)
+        else:
+            st.warning("No operation data available from Azure Application Insights.")
     
     # CHANGED: Always show completion message immediately after the health check display
     st.chat_message("assistant").write(f"✅ Validation Completed for {health_data['application'].title().upper()} on {health_data['environment'].upper()}!")
@@ -1342,23 +1345,28 @@ def run_health_check(user_input, environment, application):
         st.session_state['azure_data'] = operations_df.to_dict('records')
         health_data['azure_data'] = operations_df.to_dict('records')
         
-        business_functions = ['Report Incident', 'Policy Search', 'New Claim', 'Submit Claim', 
+        required_cols = ['Operation Name', 'Successful Requests', 'Failed Requests']
+        if operations_df.empty or not all(col in operations_df.columns for col in required_cols):
+            st.warning("No operation data available from Azure Application Insights.")
+        else:
+        
+         business_functions = ['Report Incident', 'Policy Search', 'New Claim', 'Submit Claim', 
                             'Claims Dashboard', 'Payments', 'Policy Verification', 'Insured Details', 
                             'Incident Details', 'Claims Summary']
         
-        chart_data = operations_df[['Operation Name', 'Successful Requests', 'Failed Requests']].head(10).copy()
-        chart_data['Business Function'] = business_functions[:len(chart_data)]
-        chart_data = chart_data.melt(id_vars=['Business Function'], 
+         chart_data = operations_df[required_cols].head(10).copy()
+         chart_data['Business Function'] = business_functions[:len(chart_data)]
+         chart_data = chart_data.melt(id_vars=['Business Function'], 
                                    value_vars=['Successful Requests', 'Failed Requests'],
                                    var_name='Request Type', value_name='Count')
         
-        fig = px.bar(chart_data, x='Business Function', y='Count', color='Request Type',
+         fig = px.bar(chart_data, x='Business Function', y='Count', color='Request Type',
                    title='Successful vs Failed Requests by Page',
                    color_discrete_map={'Successful Requests': '#2E8B57', 'Failed Requests': '#DC143C'},
                    text='Count')
-        fig.update_traces(textposition='inside', textangle=0)
-        fig.update_xaxes(tickangle=45)
-        st.plotly_chart(fig, use_container_width=True, key=f"run_chart_{application}_{environment}_{health_data['timestamp']}")
+         fig.update_traces(textposition='inside', textangle=0)
+         fig.update_xaxes(tickangle=45)
+         st.plotly_chart(fig, use_container_width=True, key=f"run_chart_{application}_{environment}_{health_data['timestamp']}")
     
     time.sleep(1)
     col1, col2, col3 = st.columns([2, 1, 2])
